@@ -1,5 +1,6 @@
-import {atom, selector} from 'recoil';
+import {atom, atomFamily, selector} from 'recoil';
 import axios from 'axios';
+import todos from '../../TODOS';
 
 export const countAtom = atom({
     key: 'countAtom',
@@ -17,4 +18,11 @@ export const asyncCountAtom = atom({
         }
     })
 
+})
+
+export const todoAtomFamily = atomFamily({
+    key: 'todoAtomFamily',
+    default: (id)=>{
+        return todos.find(x => x.id === id)
+    }
 })
