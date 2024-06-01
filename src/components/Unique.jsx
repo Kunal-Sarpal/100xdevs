@@ -1,24 +1,21 @@
-import React, { useContext } from 'react'
-import countContext from '../Context'
+import React from 'react'
+import { useRecoilValue } from 'recoil'
+import { asyncCountAtom, countAtom } from '../Store/atom/CountA'
 
 function Unique() {
-    const {count} = useContext(countContext)
+    const count  = useRecoilValue(countAtom)
+    const notification = useRecoilValue(asyncCountAtom)
   return (
     <>
-    {count%2 ? (<><div style={{position:'absolute'}}>
-        <li>HELLO</li>
-        <li>HELLO</li>
-        <li>HELLO</li>
-        <li>HELLO</li>
-        <li>HELLO</li>
-        <li>HELLO</li>
-        <li>HELLO</li>
-        <li>HELLO</li>
-        <li>HELLO</li>
-        <li>HELLO</li>
-    </div></>):(<><div>{"FUCK YOU"}</div></>)}
     
-    
+   <div>
+        <h1>Information</h1>
+
+        <button>Network {notification.network}</button>
+        <button>Jobs {notification.jobs}</button>
+        <button>Messaging {notification.messaging}</button>
+        <button>Notifications {notification.notifications}</button>
+   </div>
     
     </>
   )

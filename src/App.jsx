@@ -1,26 +1,21 @@
-import React, { useContext, useState } from 'react'
-import countContext from './Context'
-import Compo from './components/Compo';
-import Unique from './components/Unique';
+import React, { Suspense } from 'react'
+import { RecoilRoot, useRecoilValue, useSetRecoilState } from 'recoil'
+import { countAtom } from './Store/atom/CountA'
+import Unique from './components/Unique'
+import Compo from './components/Compo'
 
 function App() {
-  const [count, setCount] = useState(1);
+
   return (
+    <div>
+      <Compo/>
+      <Suspense fallback={"Loading..."}>
 
-    <>
-    <countContext.Provider value={{count,setCount}}>
+      <Unique/>
 
-    <div>App</div>
-    <Compo/>
-    <Unique/>
-    
-
-    </countContext.Provider>
-    
-    </>
+      </Suspense>
+    </div>
   )
 }
-
-
 
 export default App
